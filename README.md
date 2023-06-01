@@ -1,6 +1,6 @@
 # API data server
 
-A RESTful server to serve data for the restaurant app.
+A RESTful server to serve data for the DAAM restaurant app.
 
 To start it up:
 ```bash
