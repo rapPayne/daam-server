@@ -6,7 +6,6 @@ import { authRouter } from './middlewares/authentication-middleware.mjs';
 import { orderRouter } from './routers/order.router.mjs';
 
 const app = jsonServer.create()
-
 const port = 3008;
 
 // We can choose to skip authorization to make development easier. Just add the --skipAuth flag when running.

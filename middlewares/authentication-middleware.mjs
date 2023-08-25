@@ -1,31 +1,27 @@
 // need cookieParser middleware before we can do anything with cookies
 import { readDatabase, saveDatabase } from '../repository.mjs';
+import jwt from 'jsonwebtoken';
+const jwtSecret = "This is the daam-jwt-secret-key! Oooooooh!"
 
-// Initialized to empty, this is where we save who is currently
-// logged on to the server.
-// 
-// When someone successfully authenticates, we associate their
-// identity (user account info) with the auth token that's in
-// the "auth" cookie.
-//
-// The identity is a user record taken from the database.
-//
-// Each session will be an object with:
-// - token: string - a sort of random string that's used to identify the session
-// - user: {username, creditCard, etc.}
-const sessions = [];
-
+/**
+ * This middleware should be run on every request.
+ * If the request has an authorization header, decode the JWT token and store the user in req.user.
+ * Then, subsequent sensitive functions can just check req.user for authorization.
+ * @param {function} app The express app itself
+ */
 export function authRouter(app) {
-  // If the user sent an 'auth' cookie, set req.user.
-  // This should be run on every request.
   app.use((req, res, next) => {
-    // check if client sent 'auth' cookie
-    let cookie = req.cookies?.auth;
-    if (cookie) {
-      // find the session in global memory
-      const session = sessions.find(s => s.token === cookie)
-      req.user = session?.user;
-    }
+    // check if client sent our JWT token in the 'authorization' header.
+    const authHeader = req.headers['authorization'];
+    const jwtToken = authHeader && authHeader.split(' ')[1];
+    // Get the username/data from the jwtToken and put it in req.user
+    jwt.verify(jwtToken, jwtSecret, (err, user) => {
+      if (err) {
+        console.warn("No user found")
+        return; // user isn't validated
+      }
+      req.user = user;
+    });
     next();
   });
 
@@ -43,13 +39,8 @@ export function authRouter(app) {
     const users = db.users;
     const user = users.find(u => u.username === username && u.password === password);
     if (user) {
-      // Create a session token
-      const cookieVal = makeCookie()
-      console.log('made cookie', cookieVal);
-      // Write it as a cookie
-      res.cookie('auth', cookieVal, { maxAge: 120 * 60 * 1000 /* 120 minutes */, httpOnly: true });
-      // Save it here in global memory along with the user.
-      sessions.push({ token: cookieVal, user: { ...user } })
+      const jwtToken = makeJwtToken(user)
+      res.header('Authorization', `Bearer ${jwtToken}`);
       res.status(200).send({ ...user, password: "****" });
     } else {
       res.status(401).send("Bad username or password");
@@ -85,14 +76,15 @@ export function authRouter(app) {
 
     db.users.push(user);
     saveDatabase(db);
-    res.status(200).send(user)
 
+    const jwtToken = makeJwtToken({ ...user, password: "***" });
+    res.header('Authorization', `Bearer ${jwtToken}`);
+    res.status(200).send({ ...user, password: "***" });
   });
-
 }
 
-function makeCookie() {
-  return `daam-${Math.random().toString().substring(2)}`
+function makeJwtToken(user) {
+  return jwt.sign({ ...user, password: "***" }, jwtSecret);
 }
 
 export const getNextUserId = (users) =>
