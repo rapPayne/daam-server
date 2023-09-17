@@ -108,7 +108,7 @@ function makeNewOrder(id) {
 }
 
 function makeMenuItem(id) {
-  const categories = ["entrees", "appetizers", "desserts", "beverages"];
+  const categories = ["appetizers", "burgers", "desserts", "meats", "pastas", "pho", "sandwiches", "stirfry", "sushi",];
   const menuItem = {
     id,
     name: `${chance.word().toTitleCase()} ${chance.word().toTitleCase()}`,
