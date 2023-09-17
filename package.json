@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "description": "Dinner-and-a-Movie restaurant API server with a simple JSON database and fake data",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "load-db": "node reloadDatabase.mjs",
-    "start": "node --watch apiServer.mjs --skipAuth"
+    "start": "node --watch apiServer.mjs --skipAuth",
+    "test": "node reloadDatabase.test.mjs"
   },
   "author": "@RapPayne",
   "license": "UNLICENSED",

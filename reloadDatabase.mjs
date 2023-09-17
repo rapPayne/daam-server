@@ -45,10 +45,10 @@ for (let order of db.orders) {
     order.orderTime = ((new Date()) - Math.floor(Math.random() * 30 * 60 * 1000)); // Random time in the last 30 minutes
   }
 }
-for (let i = startingOrderId; i <= startingOrderId + howManyOldOrders; i++) {
+for (let i = startingOrderId; i < startingOrderId + howManyOldOrders; i++) {
   db.orders.push(makeOldOrder(i));
 }
-for (let i = startingOrderId + howManyOldOrders; i <= startingOrderId + howManyOldOrders + howManyNewOrders; i++) {
+for (let i = startingOrderId + howManyOldOrders; i < startingOrderId + howManyOldOrders + howManyNewOrders; i++) {
   db.orders.push(makeNewOrder(i));
 }
 
@@ -82,19 +82,22 @@ function makeOrder(id, type) {
   } else {
     orderTime = ((new Date()) - Math.floor(Math.random() * 30 * 60 * 1000)); // Random time in the last 30 minutes
   }
-  const order = {
+  let order = {
     id,
     userId: user.id,
     orderTime: new Date(orderTime),
-    pickupTime: new Date(orderTime + Math.floor(Math.random() * 15 * 60 * 1000)), // Randomly 15 minutes after order time
+    pickupTime: new Date(orderTime + Math.floor(Math.random() * 15 * 60 * 1000)), // Randomly up to 15 minutes after order time
     area: `Theater ${Math.floor(Math.random() * 6) + 1}`, // Random theater number between 1 and 6
     location: `Table ${Math.floor(Math.random() * 50) + 1}`,  // Random table number between 1 and 50
     tax: +(subTotal * 0.0825).toFixed(2), // 8.25% tax
     tip: +(subTotal * 0.20).toFixed(2),  // 20% tip
     creditCard: { ...user.creditCard, cvv: Math.floor(Math.random() * 900) + 100 },  // Random number between 100&999
     items,
-    status: type === "old" ? "completed" : "new",
+    status: "completed",
   }
+  // New orders aren't picked up yet.
+  if (type === "new")
+    order = { ...order, pickupTime: undefined, status: "new" };
   return order;
 }
 function makeOldOrder(id) {
@@ -132,7 +135,7 @@ function makeRandomUser(id = 0) {
     id,
     username: `${first.charAt(0).toLowerCase()
       }.${last.toLowerCase()}`,
-    password: chance.word(),
+    password: "pass",
     first,
     last,
     phone: chance.phone(),
