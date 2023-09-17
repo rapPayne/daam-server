@@ -21,6 +21,7 @@ const foodImageFiles = fs.readdirSync('./public/images');
 const initialMenuItems = loadFromJSON('./initial_data/menuItems.json');
 const initialUsers = loadFromJSON('./initial_data/users.json');
 const initialOrders = loadFromJSON('./initial_data/orders.json');
+const categories = loadFromJSON('./initial_data/categories.json');
 const db = {};
 
 // Create some users
@@ -29,6 +30,9 @@ db.users.push(...initialUsers);
 for (let i = startingUserId; i <= startingUserId + howManyUsers; i++) {
   db.users.push(makeRandomUser(i))
 }
+
+// Load categories
+db.categories = categories;
 
 // Create menu items
 db.menuItems = []
@@ -108,7 +112,6 @@ function makeNewOrder(id) {
 }
 
 function makeMenuItem(id) {
-  const categories = ["appetizers", "burgers", "desserts", "meats", "pastas", "pho", "sandwiches", "stirfry", "sushi",];
   const menuItem = {
     id,
     name: `${chance.word().toTitleCase()} ${chance.word().toTitleCase()}`,

@@ -43,5 +43,86 @@
     "price": 11.54,
     "imageUrl": "http://localhost:3008/images/burger_5.jpg",
     "available": true
+  },
+  {
+    "id": 6,
+    "name": "Salmon Sashimi",
+    "description": "Premium salmon pieces, expertly carved. Covered with our signature curry-inspired sauce that is slightly sweet and slightly spicy. Sujpuh vir minpe niebfo noz pe habtifdew jegedpi hantidpis ilosiop fitko kirer sul fe sevpabuzi. Idicoijo fi ac rijsed lo dukvodod colgofa vaffiid cov igsef fo fuwpu convijor lojairi nafvonu boteb. Rofotbu luw ka forohna wadpago arhagdud gig hupuzooba copir luhbukov jewif vefre. Duerpu wihvevim winruuzu gabopiga ovla ip da ehho kal bis topbo cajocmaj fohvidum peg nam afniv liowo. Cah zeplabpet aseba surhu or gal pamga hefe zoabi ombueh ezo dehzi davrikfik virzi ga. Lo kafolvef degkuca sanbuaro vagmaibu icipouvu kusmi vojinok tawif ewuwe boru mefdijfer ohookabe zeiw imesdiv ekdat.",
+    "category": "sushi",
+    "price": 11.38,
+    "imageUrl": "http://localhost:3008/images/sushi_1.jpg",
+    "available": true
+  },
+  {
+    "id": 7,
+    "name": "Sakura Blossom Salmon Sushi Roll",
+    "description": "Immerse yourself in a culinary masterpiece with our Sakura Blossom Salmon Sushi Roll. Handcrafted with the utmost precision, this roll features the finest Norwegian salmon, creamy avocado, and delicate sakura radish sprouts, elegantly wrapped in crisp nori seaweed and perfectly seasoned sushi rice. Topped with toasted sesame seeds, it's a symphony of flavors and textures, a celebration of artistry on a plate. Served with a house-made dipping sauce.",
+    "category": "sushi",
+    "price": 13.66,
+    "imageUrl": "http://localhost:3008/images/sushi_2.jpg",
+    "available": true
+  },
+  {
+    "id": 8,
+    "name": "Strawberry Parfait",
+    "description": "Indulge in a sweet symphony of flavors and textures with our Strawberry Parfait. Layers of luscious, ripe strawberries, nestled between clouds of velvety vanilla custard and delicate, golden-brown granola clusters. Each spoonful is a harmonious blend of juicy, sun-kissed strawberries, creamy custard, and the satisfying crunch of granola. Topped with a dollop of freshly whipped cream and a garnish of fresh mint leaves, it's a delightful journey of taste and a visual masterpiece in a glass. A heavenly treat that's both elegant and comforting, the Strawberry Parfait is the perfect finale to any meal or a delightful indulgence anytime you crave a taste of pure bliss. Enjoy!",
+    "category": "desserts",
+    "price": 8.75,
+    "imageUrl": "http://localhost:3008/images/desserts_1.jpg",
+    "available": true
+  },
+  {
+    "id": 9,
+    "name": "Decadent Chocolate Cake with Mousse Layers",
+    "description": "Indulge in the ultimate chocolate lover's delight with our Decadent Chocolate Cake. Moist, rich chocolate cake layers alternate with silky chocolate mousse, creating a symphony of textures and flavors. A drizzle of vibrant strawberry sauce crowns this masterpiece, adding a delightful touch of fruity sweetness. It's a sensory journey that combines the deep, dark allure of chocolate with the bright, tangy notes of strawberries, making each bite an exquisite experience.",
+    "category": "desserts",
+    "price": 9.50,
+    "imageUrl": "http://localhost:3008/images/desserts_1.jpg",
+    "available": true
+  },
+  {
+    "id": 10,
+    "name": "Tropical Fruit Bowl Delight",
+    "description": "Escape to a tropical paradise with our exquisite Tropical Fruit Bowl. This vibrant dessert is a celebration of nature's bounty, featuring an array of fresh, colorful fruits that awaken your senses with every bite. Sweet, juicy strawberries mingle with the tropical allure of ripe kiwi and luscious papaya, while plump blueberries offer a burst of freshness. A scattering of coconut flakes adds a hint of exotic crunch, and jewel-like pomegranate arils provide a playful burst of tartness. Each spoonful is a symphony of flavors and textures, a refreshing and wholesome indulgence that transports you to sun-kissed shores with every bite.",
+    "category": "desserts",
+    "price": 11.50,
+    "imageUrl": "http://localhost:3008/images/desserts_1.jpg",
+    "available": true
+  },
+  {
+    "id": 11,
+    "name": "Heavenly Dessert Pancake Stack",
+    "description": "Indulge in our Heavenly Dessert Pancake Stack, a tower of golden pancakes kissed with cinnamon and drenched in velvety caramel. Fresh strawberries provide a burst of fruity sweetness, while a side of sweet butter dipping sauce adds a luxurious touch. It's a symphony of flavors and textures, where each bite blends the comforting warmth of pancakes with the richness of caramel and the brightness of strawberries. This dessert is a delightfully indulgent treat that will leave you craving more.",
+    "category": "desserts",
+    "price": 12.25,
+    "imageUrl": "http://localhost:3008/images/desserts_1.jpg",
+    "available": true
+  },
+  {
+    "id": 12,
+    "name": "Fiery Seafood Pho Sensation",
+    "description": "Dive into a bold culinary adventure with our Fiery Seafood Pho, featuring thick noodles enveloped in a rich, spicy broth. Succulent shrimp and tender fish pieces swim amidst the noodles, while fresh mint and vibrant red pepper add contrasting layers of coolness and heat. This dish is a harmonious balance of bold flavors and satisfying textures, a celebration of Vietnamese cuisine's vibrant spirit.",
+    "category": "pho",
+    "price": 11.69,
+    "imageUrl": "http://localhost:3008/images/pho_1.jpg",
+    "available": true
+  },
+  {
+    "id": 13,
+    "name": "Vegetarian Dumpling Soup",
+    "description": "Indulge in the comforting embrace of our reconstructed 'pho'; Vegetarian Dumpling Soup. This delightful dish combines a fragrant, hearty vegetable broth with plump, handmade dumplings that burst with flavor. The dumplings are filled with a medley of finely chopped vegetables, offering a satisfying, savory bite with each spoonful. Tender, simmered vegetables float gracefully in the aromatic broth, creating a nourishing and soul-warming experience. Topped with a sprinkle of fresh herbs, this soup is a celebration of wholesome goodness, a perfect harmony of taste and texture for vegetarians and soup lovers alike.",
+    "category": "pho",
+    "price": 11.69,
+    "imageUrl": "http://localhost:3008/images/pho_2.jpg",
+    "available": true
+  },
+  {
+    "id": 14,
+    "name": "Coconut-Curry Lobster Dumpling Soup",
+    "description": "Savor the exotic flavors of our Coconut-Curry Lobster Dumpling Soup, a culinary masterpiece that takes your taste buds on a journey to paradise. A rich, velvety coconut-curry broth forms the luxurious base, infused with the fragrant spices of the East. Nestled within this aromatic elixir are succulent lobster dumplings, each bite revealing tender, perfectly cooked lobster meat wrapped in delicate dumpling skin. Alongside, you'll find baby potatoes, soft and creamy, providing a comforting contrast to the bold flavors of the soup. This dish is a harmonious blend of indulgence and sophistication, a true celebration of the sea and global culinary inspiration in every luscious spoonful.",
+    "category": "pho",
+    "price": 11.69,
+    "imageUrl": "http://localhost:3008/images/pho_3.jpg",
+    "available": true
   }
 ]
