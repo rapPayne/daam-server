@@ -10,6 +10,11 @@ const howManyMenuItems = 20;
 const startingOrderId = 20123;
 const howManyOldOrders = 200;
 const howManyNewOrders = 20;
+const startingReservationId = 8573;
+const daysToSchedule = 10;
+const oneDayInMS = 24 * 60 * 60 * 1000;
+const todayInMS = (new Date()).getTime();
+const yesterdayInMS = todayInMS - oneDayInMS;
 
 // Utility functions
 String.prototype.toTitleCase = function () { return this.charAt(0).toLocaleUpperCase() + this.substring(1) };
@@ -17,11 +22,13 @@ const loadFromJSON = (filename) => JSON.parse(fs.readFileSync(filename));
 
 // Setup
 const chance = Chance.Chance();
-const foodImageFiles = fs.readdirSync('./public/images');
+const foodImageFiles = fs.readdirSync('./public/images/food');
 const initialMenuItems = loadFromJSON('./initial_data/menuItems.json');
 const initialUsers = loadFromJSON('./initial_data/users.json');
 const initialOrders = loadFromJSON('./initial_data/orders.json');
 const categories = loadFromJSON('./initial_data/categories.json');
+const films = loadFromJSON('./initial_data/films.json');
+const theaters = loadFromJSON('./initial_data/theaters.json');
 const db = {};
 
 // Create some users
@@ -55,6 +62,24 @@ for (let i = startingOrderId; i < startingOrderId + howManyOldOrders; i++) {
 for (let i = startingOrderId + howManyOldOrders; i < startingOrderId + howManyOldOrders + howManyNewOrders; i++) {
   db.orders.push(makeNewOrder(i));
 }
+
+// Create films
+db.films = makeFilms(films);
+
+// Create theaters
+db.theaters = theaters;
+
+// Create tables and add them to theaters
+db.theaters = addTablesToTheaters(db.theaters);
+
+// Create seats
+db.theaters = addSeatsToTheaters(db.theaters);
+
+// Create showings
+db.showings = makeShowings(db.films, db.theaters);
+
+// Create reservations
+db.reservations = makeReservations(db.users, db.theaters, db.showings)
 
 // save database file
 fs.writeFileSync(dbFileName, JSON.stringify(db, null, 2))
@@ -148,4 +173,137 @@ function makeRandomUser(id = 0) {
     adminUser: false,
   }
   return person;
+}
+
+function makeFilms(films) {
+  return films.map(f => ({ ...f, runtime: getRandomRuntimeBetween(90, 150), release_date: getRecentDate(20) }));
+}
+
+function addTablesToTheaters(theaters) {
+  let id = 1; let rows = 3; let columns = 5;
+  for (let theater of theaters) {
+    theater.tables = [];
+    let table_number = 1;
+    for (let x = 1; x <= rows; x++) {
+      for (let y = 1; y <= columns; y++) {
+        const table = { id: id++, table_number, x, y };
+        theater.tables.push(table)
+        table_number++;
+      }
+    }
+  }
+  return theaters;
+}
+
+function addSeatsToTheaters(theaters) {
+  // Each table will have 1, 2, or 4 seats.
+  // Loop through each table and pick one of those numbers
+  console.log("Making seats data");
+  const numbersOfSeatsArray = [1, 2, 4];
+  let id = 1;
+  for (let theater of theaters) {
+    for (let table of theater.tables) {
+      table.seats = [];
+      const numberOfSeatsAtThisTable = numbersOfSeatsArray[Math.floor(Math.random() * numbersOfSeatsArray.length)];
+      for (let seat_number = 1; seat_number <= numberOfSeatsAtThisTable; seat_number++) {
+        const seat = { id, table_id: table._id, seat_number, price: 10.75 };
+        table.seats.push(seat); // Add this seat to the table.
+        id++;
+      }
+    }
+  }
+  return theaters
+}
+
+function makeShowings(films, theaters) {
+  // Need to have films created and theaters created when this runs: it loops through both of those,
+  // creating multiple showings of a film in each theater.
+  const showings = [];
+  let showingId = 1;
+  for (let [index, film] of films.entries()) {
+    // If there's no theater, skip this film. This will happen if we have more films than theaters
+    if (!theaters[index]) continue;
+    const theater_id = theaters[index].id
+    // Create a daily schedule for the next X days
+    const lastDayInMS = todayInMS + daysToSchedule * oneDayInMS;
+    for (let day = yesterdayInMS; day <= lastDayInMS; day += oneDayInMS) {
+      const theDay = new Date(day).setHours(0, 0, 0, 0);
+      const midnightLocalTime = new Date(day).setHours(23, 59);
+      //console.log(`Showing Times:`, film.id, randomStartTime, midnightLocalTime)
+      for (let showing_time = getRandomStartTime(theDay, 11, 14); showing_time < midnightLocalTime; showing_time = getNextStartingTime(showing_time, film.runtime)) {
+        const showing = { id: showingId++, film_id: film.id, theater_id, showing_time };
+        showings.push(showing);
+      }
+    }
+  }
+  return showings;
+}
+
+function makeReservations(users, theaters, showings) {
+  const reservations = [];
+  let id = startingReservationId;
+  // Loop through each seat for each showing.
+  for (let showing of showings) {
+    // Today's shows should be about 90% filled. Tomorrow's 80%, next day 70%, etc.
+    const numOfDaysUntilShowing = (showing.showing_time - todayInMS) / oneDayInMS;
+    const percentFull = (9 - numOfDaysUntilShowing) * 0.1;
+    const theater = theaters.find(t => t.id === showing.theater_id);
+    for (let table of theater.tables) {
+      for (let seat of table.seats) {
+        const reserved = (Math.random() + percentFull) > 1;
+        if (reserved) {
+          // Get a random, but real user
+          const user = users[Math.floor(Math.random() * users.length)]
+          const payment_key = getRandomPaymentKey();
+          const reservation = { id, showing_id: showing.id, seat_id: seat.id, user_id: user.id, payment_key, };
+          reservations.push(reservation);
+          id++;
+        }
+      }
+    }
+  }
+  return reservations;
+}
+
+//////////////////////////////////////////////////////////////
+// Utility/Support functions
+//////////////////////////////////////////////////////////////
+function getRandomPaymentKey() {
+  return `pk_${Math.random().toString().slice(2, 12)}`;
+}
+function getRandomRuntimeBetween(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+function getRecentDate(withinDays) {
+  const milliseconds = (Math.random() * withinDays) * 24 * 60 * 60 * 1000;
+  const recentDate = Date.now() - milliseconds;
+  return new Date(recentDate);
+}
+// Returns a *UTC* time between the *local* hours passed in.
+function getRandomStartTime(date, earliestHour, latestHour) {
+  let newDate = new Date(date);
+  //const tzOffsetInMS = newDate.getTimezoneOffset() * 60 * 1000;
+  const tzOffsetInMS = 0;
+  const minutes = [0, 15, 30, 45];
+  const randomHour = Math.floor(Math.random() * (latestHour - earliestHour) + earliestHour);
+  const randomMinutes = minutes[Math.floor(Math.random() * minutes.length)];
+  newDate.setHours(randomHour, randomMinutes);
+  newDate = new Date(newDate.getTime() + tzOffsetInMS);
+  return newDate;
+}
+function getNextStartingTime(lastStartingTime, runtimeinMinutes = 90) {
+  const endTimeInMS = lastStartingTime.getTime() + runtimeinMinutes * 60 * 1000;
+  const nextStartingTime = new Date(endTimeInMS);
+  const minutes = nextStartingTime.getMinutes();
+  if (minutes < 15)
+    nextStartingTime.setMinutes(15, 0, 0);
+  else if (minutes < 30)
+    nextStartingTime.setMinutes(30);
+  else if (minutes < 45)
+    nextStartingTime.setMinutes(45);
+  else {
+    const hour = nextStartingTime.getHours() + 1;
+    nextStartingTime.setHours(hour, 0, 0, 0);
+  }
+  return nextStartingTime;
 }
