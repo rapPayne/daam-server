@@ -186,7 +186,7 @@ function addTablesToTheaters(theaters) {
     let table_number = 1;
     for (let x = 1; x <= rows; x++) {
       for (let y = 1; y <= columns; y++) {
-        const table = { id: id++, table_number, x, y };
+        const table = { id: id++, table_number, row: x, column: y };
         theater.tables.push(table)
         table_number++;
       }
@@ -198,7 +198,6 @@ function addTablesToTheaters(theaters) {
 function addSeatsToTheaters(theaters) {
   // Each table will have 1, 2, or 4 seats.
   // Loop through each table and pick one of those numbers
-  console.log("Making seats data");
   const numbersOfSeatsArray = [1, 2, 4];
   let id = 1;
   for (let theater of theaters) {
