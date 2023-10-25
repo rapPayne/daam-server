@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import { loggingMiddleware } from './middlewares/logging-middleware.mjs';
 import { authRouter } from './middlewares/authentication-middleware.mjs';
 import { orderRouter } from './routers/order.router.mjs';
+import { showingsRouter } from './routers/showings.router.mjs';
 
 const app = jsonServer.create()
 const port = 3008;
@@ -26,8 +27,10 @@ app.use(middlewares)
 app.use(cookieParser());
 
 authRouter(app);
-orderRouter(app)
-app.use(router)
+orderRouter(app);
+showingsRouter(app);
+
+app.use(router);
 
 app.listen(port, () => {
   console.log(`API Server is running on port ${port}.`)
