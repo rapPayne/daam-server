@@ -1,3 +1,5 @@
+// This is for ordering FOOD items.
+// Reserving tickets is in reservations.router.mjs
 import { readDatabase, saveDatabase } from '../repository.mjs';
 
 

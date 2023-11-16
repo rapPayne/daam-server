@@ -5,6 +5,7 @@ import { loggingMiddleware } from './middlewares/logging-middleware.mjs';
 import { authRouter } from './middlewares/authentication-middleware.mjs';
 import { orderRouter } from './routers/order.router.mjs';
 import { showingsRouter } from './routers/showings.router.mjs';
+import { reservationsRouter } from './routers/reservations.router.mjs';
 
 const app = jsonServer.create()
 const port = 3008;
@@ -27,7 +28,8 @@ app.use(middlewares)
 app.use(cookieParser());
 
 authRouter(app);
-orderRouter(app);
+orderRouter(app);        // For food ordering
+reservationsRouter(app); // For ticket ordering
 showingsRouter(app);
 
 app.use(router);
