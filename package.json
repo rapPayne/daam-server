@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "load-db": "node reloadDatabase.mjs",
-    "start": "node --watch apiServer.mjs --skipAuth",
+    "start": "node apiServer.mjs --skipAuth",
+    "watch": "node --watch apiServer.mjs --skipAuth",
     "test": "node reloadDatabase.test.mjs"
   },
   "author": "@RapPayne",

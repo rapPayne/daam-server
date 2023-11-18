@@ -135,7 +135,6 @@ function makeOldOrder(id) {
 function makeNewOrder(id) {
   return makeOrder(id, "new");
 }
-
 function makeMenuItem(id) {
   const menuItem = {
     id,
@@ -143,12 +142,11 @@ function makeMenuItem(id) {
     description: chance.paragraph({ sentences: Math.floor(Math.random() * 3) }),
     category: categories[Math.floor(Math.random() * categories.length)],
     price: +(Math.random() * 12 + 3).toFixed(2),
-    imageUrl: `${imageServer}/images/${foodImageFiles[Math.floor(Math.random() * foodImageFiles.length)]}`,
+    imageUrl: `${imageServer}/images/food/${foodImageFiles[Math.floor(Math.random() * foodImageFiles.length)]}`,
     available: true,
   }
   return menuItem;
 }
-
 function makeRandomUser(id = 0) {
   const gender = chance.gender().toLowerCase();
   const first = chance.first({ gender });
@@ -174,11 +172,9 @@ function makeRandomUser(id = 0) {
   }
   return person;
 }
-
 function makeFilms(films) {
   return films.map(f => ({ ...f, runtime: getRandomRuntimeBetween(90, 150), release_date: getRecentDate(20) }));
 }
-
 function addTablesToTheaters(theaters) {
   let id = 1; let rows = 3; let columns = 5;
   for (let theater of theaters) {
@@ -194,7 +190,6 @@ function addTablesToTheaters(theaters) {
   }
   return theaters;
 }
-
 function addSeatsToTheaters(theaters) {
   // Each table will have 1, 2, or 4 seats.
   // Loop through each table and pick one of those numbers
@@ -213,7 +208,6 @@ function addSeatsToTheaters(theaters) {
   }
   return theaters
 }
-
 function makeShowings(films, theaters) {
   // Need to have films created and theaters created when this runs: it loops through both of those,
   // creating multiple showings of a film in each theater.
@@ -237,7 +231,6 @@ function makeShowings(films, theaters) {
   }
   return showings;
 }
-
 function makeReservations(users, theaters, showings) {
   const reservations = [];
   let id = startingReservationId;
