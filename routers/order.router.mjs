@@ -12,7 +12,7 @@ export const orderRouter = (app) => {
 
 const placeOrderRoute = (req, res) => {
   let user = req.user;
-  console.log("placing order", res.body);
+  console.log("placing order", req.body);
   if (!user) {
     res.status(403).send("Please log in before trying to place a new order")
     return;
@@ -22,8 +22,23 @@ const placeOrderRoute = (req, res) => {
   const orderId = getNextOrderId(db.orders)
   const newOrder = {
     id: orderId,
-    ...req.body.order,
-  }
+    userId: user.id,
+    orderTime: new Date(),
+    location: req.body.location,
+    area: req.body.area,
+    tax: calculateTax(req.body),
+    tip: req.body.tip,
+    creditCard: req.body.creditCard,
+    status: "new",
+    items: (req.body.items ?? req.body.cart ?? []).map(item => ({
+      id: item.id,
+      itemId: item.itemId, // The menuItem's id
+      name: item.name,
+      price: item.price,
+      notes: item.notes,
+      firstName: item.firstName,  // Who this food item is for
+    })),
+  };
   //Add to the database
   db.orders.push(newOrder);
   saveDatabase(db);
@@ -95,6 +110,10 @@ const getOrdersRoute = (req, res) => {
   }
 }
 
+
 const getNextOrderId = (orders) =>
   orders.reduce((prev, curr) => (prev > curr.id) ? prev : curr.id, 0) + 1;
 
+function calculateTax(order) {
+  return (order.items ?? order.cart ?? []).reduce((acc, item) => acc + item.price, 0) * .0825;
+}
