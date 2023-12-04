@@ -13,16 +13,16 @@ export const orderRouter = (app) => {
 const placeOrderRoute = (req, res) => {
   let user = req.user;
   console.log("placing order", req.body);
-  if (!user) {
-    res.status(403).send("Please log in before trying to place a new order")
-    return;
-  }
+  // if (!user) {
+  //   res.status(403).send("Please log in before trying to place a new order")
+  //   return;
+  // }
   const db = readDatabase();
   //Process into a real order
   const orderId = getNextOrderId(db.orders)
   const newOrder = {
     id: orderId,
-    userId: user.id,
+    userId: user?.id,
     orderTime: new Date(),
     location: req.body.location,
     area: req.body.area,
