@@ -236,9 +236,9 @@ function makeReservations(users, theaters, showings) {
   let id = startingReservationId;
   // Loop through each seat for each showing.
   for (let showing of showings) {
-    // Today's shows should be about 90% filled. Tomorrow's 80%, next day 70%, etc.
+    // Today's shows should be about 80% filled. Tomorrow's 70%, next day 60%, etc.
     const numOfDaysUntilShowing = (showing.showing_time - todayInMS) / oneDayInMS;
-    const percentFull = (9 - numOfDaysUntilShowing) * 0.1;
+    const percentFull = (8 - numOfDaysUntilShowing) * 0.1;
     const theater = theaters.find(t => t.id === showing.theater_id);
     for (let table of theater.tables) {
       for (let seat of table.seats) {

@@ -65,14 +65,14 @@ const getReservationsRoute = (req, res) => {
 const buyTicketsRoute = (req, res) => {
   let user = req.user;
   let showing_id = req.body.showing_id;
-  console.log("Buying tickets", res.body);
+  console.log("Buying tickets", req.body);
 
   const db = readDatabase();
   // This is where you'd charge the card and get the payment key from Stripe
   const payment_key = `pk_${Math.random().toString().slice(2, 12)}` //Pretending to get this from Stripe
 
   //iterate each seat reserved
-  const newReservations = req.body.seats.map(seat_id => {
+  const newReservations = req.body.seats?.map(seat_id => {
     const reservationId = getNextReservationId(db.reservations);
     //Process into a real reservation
     const newReservation = {
