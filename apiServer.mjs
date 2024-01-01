@@ -1,6 +1,7 @@
 import process from 'process';
 import jsonServer from 'json-server';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import { loggingMiddleware } from './middlewares/logging-middleware.mjs';
 import { authRouter } from './middlewares/authentication-middleware.mjs';
 import { orderRouter } from './routers/order.router.mjs';
@@ -20,6 +21,7 @@ if (skipAuth) {
 const router = jsonServer.router('database.json')
 const middlewares = jsonServer.defaults(); // noCors b/c cookies aren't written when CORS is set to '*'
 //app.use(cors({ origin: 'http://localhost:4200', credentials: true }));
+app.use(cors({ origin: '*' }));
 app.use(jsonServer.rewriter({ "/api/*": "/$1" }));
 
 app.use(jsonServer.bodyParser)

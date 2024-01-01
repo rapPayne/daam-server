@@ -62,6 +62,10 @@ const getReservationsRoute = (req, res) => {
   }
 }
 
+/**
+ * Purchases the seats. Adds each to the reservations collection.
+ * Returns an array of ids
+ */
 const buyTicketsRoute = (req, res) => {
   let user = req.user;
   let showing_id = req.body.showing_id;
@@ -89,7 +93,7 @@ const buyTicketsRoute = (req, res) => {
 
   //Add to the database
   saveDatabase(db);
-  res.status(200).send(newReservations);
+  res.status(200).send(newReservations.map(r => r.id));
 }
 
 /**
@@ -103,14 +107,24 @@ const getReservationRoute = (req, res) => {
     res.status(401).send("Please log in before trying to view your reservation")
     return;
   }
-  const reservations = readDatabase().reservations;
-  const reservation = reservations.find(r => r.id === +reservationId);
+  const database = readDatabase();
+  const reservation = database.reservations.find(r => r.id === +reservationId);
   if (!reservation) {
     res.status(404).send(`Reservation ${reservationId} not found`);
     return;
   }
+  // Get showing info
+  const showing = database.showings.find(s => s.id === reservation.showing_id);
+  // Get film info
+  const film = database.films.find(f => f.id === showing.film_id);
+  // Get theater info
+  const theater = database.theaters.find(t => t.id === showing.theater_id);
+  // Get the table
+  const table = theater.tables.find(table => table.seats.flatMap(seat => seat).some(seat => seat.id = reservation.seat_id));
+  // Get seat info
+  const seat = table.seats.find(seat => seat.id === reservation.seat_id);
   if (req.skipAuth || user?.adminUser || reservation?.userId === +user?.id)
-    res.send(reservation);
+    res.send({ ...reservation, theater_name: theater.name, film, showing, table_number: table.table_number, seat });
   else {
     res.status(403).send("That's not your reservation. You can't see it.")
   }
