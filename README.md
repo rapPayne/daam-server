@@ -17,6 +17,12 @@ Make a POST request to /login with {"username": ____, "password": "pass" }. (All
 - Admin users are "admin", and "cmac"
 - Regular users are "me", and all the other regular users whose usernames and passwords you can look up in the database.
 
+### Bypassing security
+Testing routes is tough when you have to log in before they work. So we've written a bypass. `npm run start` and `npm run watch` both start the server with all protections turned off. All routes are open without authentication.
+
+### Enabling security
+Run `node apiServer` without the --skipAuth flag.
+
 ## Database collections
 See [database.json](database.json) for the final structure. Here's a general layout.
 ### menuItems
@@ -70,7 +76,7 @@ TODO: Category should eventually be a collection/enum
 - Authorization: Single user by that authenticated user only
 ### placeOrder (POST)
 - POST: body is the entire cart
-- Authenticated user only???
+- Authenticated user only
 
 ## Order statuses
 | status        | meaning                                       |
