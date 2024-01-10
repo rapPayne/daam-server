@@ -93,7 +93,7 @@ const buyTicketsRoute = (req, res) => {
 
   //Add to the database
   saveDatabase(db);
-  res.status(200).send(newReservations.map(r => r.id));
+  res.status(200).send(newReservations);
 }
 
 /**
