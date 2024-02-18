@@ -98,6 +98,41 @@ const buyTicketsRoute = (req, res) => {
 
 /**
  * Gets a single reservation by id. 
+ * Each reservation looks like this:
+ * {
+  "id": 8573,
+  "showing_id": 1,
+  "seat_id": 2,
+  "user_id": 1119,
+  "payment_key": "pk_1693875942",
+  "theater_name": "John Wayne Theater",
+  "film": {
+    "id": 1,
+    "title": "Chunnel",
+    "homepage": "http://chunnelmovie.com",
+    "release_date": "2024-02-11T00:56:58.935Z",
+    "overview": "Illuminating the darkest depths of international intrigue and personal sacrifice, 'Chunnel' takes you on a heart-pounding journey through the underbelly of the world's most vital tunnel. When a mysterious explosion rocks the Chunnel, trapping the U.S. President's daughter inside, the race against time begins. As rescuers tunnel their way through the wreckage, they unearth a web of conspiracies that threaten to reshape global politics. Unraveling the layers of deception becomes a gripping chess game, where every move could mean life or death. 'Chunnel' is not just a pulse-pounding thriller; it's a masterclass in suspense, leaving audiences at the edge of their seats, guessing until the final revelation. Get ready for a cinematic ride that will have you questioning alliances, unraveling secrets, and redefining the limits of human determination. The Chunnel holds more than just passengers; it harbors a tale of deception, bravery, and the resilience of the human spirit. Don't miss the tunnel of twists and turns that is 'Chunnel.'",
+    "poster_path": "/images/posters/1.jpg",
+    "runtime": 121,
+    "tagline": "There's a war 100 meters below the English Channel",
+    "popularity": 7.1,
+    "imdb_id": "tt0137523",
+    "vote_average": 6.2,
+    "vote_count": 52
+  },
+  "showing": {
+    "id": 1,
+    "film_id": 1,
+    "theater_id": 1,
+    "showing_time": "2024-02-14T17:30:00.000Z"
+  },
+  "table_number": 1,
+  "seat": {
+    "id": 2,
+    "seat_number": 1,
+    "price": 10.75
+  }
+}
  */
 const getReservationRoute = (req, res) => {
   let user = req.user;
