@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Bison Burger",
-    "description": "Lean, humanely raised meat for those who are more health-conscious.",
+    "description": "Packed with protein and a touch of sweetness, it's topped with your choice of cheese and classic burger fixings. Lean, humanely raised meat for those who are more health-conscious.",
     "category": "entrees",
     "price": 11.54,
     "imageUrl": "http://localhost:3008/images/food/burger_1.jpg",
@@ -11,7 +11,7 @@
   {
     "id": 2,
     "name": "Southwest Burger",
-    "description": "Inspired by the spices of Tex-Mex, this one will light you up! Jalapenos, pico de gallo, cilantro, lettuce, and tomato",
+    "description": "Inspired by the spices of Tex-Mex, this one will light you up! Juicy patty seasoned with chili, cumin, and coriander, topped with pepper jack cheese, chipotle mayo, and fresh pico de gallo.",
     "category": "entrees",
     "price": 11.54,
     "imageUrl": "http://localhost:3008/images/food/burger_2.jpg",
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "name": "Philly Burger",
-    "description": "Grilled onions and peppers with cheese.",
+    "description": "Philly cheesesteak flavor on a juicy burger! Shaved ribeye joins melty provolone, grilled onions, and peppers for a cheeseburger that's anything but ordinary.",
     "category": "entrees",
     "price": 11.54,
     "imageUrl": "http://localhost:3008/images/food/burger_3.jpg",
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "name": "Frisco Burger",
-    "description": "Sourdough bread, grilled in butter with thousand island dressing.",
+    "description": "Craving a classic with a twist? Our Frisco Burger features a juicy patty nestled between toasted sourdough bread. Tangy thousand island dressing and creamy Swiss cheese elevate this burger to new heights.",
     "category": "entrees",
     "price": 11.54,
     "imageUrl": "http://localhost:3008/images/food/burger_4.jpg",
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "name": "Chicago Burger",
-    "description": "Three cheeses, relish, and peppers.",
+    "description": "Chicago classic alert! Our Chicago Burger piles a juicy griddled patty high with Vienna beef hot dog relish, dill pickles, sport peppers, tomato, and creamy poppy seed dressing – all on a classic poppy seed bun.",
     "category": "entrees",
     "price": 11.54,
     "imageUrl": "http://localhost:3008/images/food/burger_5.jpg",
@@ -47,7 +47,7 @@
   {
     "id": 6,
     "name": "Salmon Sashimi",
-    "description": "Premium salmon pieces, expertly carved. Covered with our signature curry-inspired sauce that is slightly sweet and slightly spicy. Sujpuh vir minpe niebfo noz pe habtifdew jegedpi hantidpis ilosiop fitko kirer sul fe sevpabuzi. Idicoijo fi ac rijsed lo dukvodod colgofa vaffiid cov igsef fo fuwpu convijor lojairi nafvonu boteb. Rofotbu luw ka forohna wadpago arhagdud gig hupuzooba copir luhbukov jewif vefre. Duerpu wihvevim winruuzu gabopiga ovla ip da ehho kal bis topbo cajocmaj fohvidum peg nam afniv liowo. Cah zeplabpet aseba surhu or gal pamga hefe zoabi ombueh ezo dehzi davrikfik virzi ga. Lo kafolvef degkuca sanbuaro vagmaibu icipouvu kusmi vojinok tawif ewuwe boru mefdijfer ohookabe zeiw imesdiv ekdat.",
+    "description": "Premium salmon pieces, expertly carved. Covered with our signature curry-inspired sauce that is slightly sweet and slightly spicy. Indulge in the fresh taste of the ocean. Our Salmon Sashimi features vibrant slices of salmon, perfect for savoring its natural flavor. Served with wasabi, pickled ginger, and soy sauce for a delightful appetizer.",
     "category": "sushi",
     "price": 11.38,
     "imageUrl": "http://localhost:3008/images/food/sushi_1.jpg",
@@ -77,7 +77,7 @@
     "description": "Indulge in the ultimate chocolate lover's delight with our Decadent Chocolate Cake. Moist, rich chocolate cake layers alternate with silky chocolate mousse, creating a symphony of textures and flavors. A drizzle of vibrant strawberry sauce crowns this masterpiece, adding a delightful touch of fruity sweetness. It's a sensory journey that combines the deep, dark allure of chocolate with the bright, tangy notes of strawberries, making each bite an exquisite experience.",
     "category": "desserts",
     "price": 9.50,
-    "imageUrl": "http://localhost:3008/images/food/desserts_1.jpg",
+    "imageUrl": "http://localhost:3008/images/food/desserts_2.jpg",
     "available": true
   },
   {
@@ -86,7 +86,7 @@
     "description": "Escape to a tropical paradise with our exquisite Tropical Fruit Bowl. This vibrant dessert is a celebration of nature's bounty, featuring an array of fresh, colorful fruits that awaken your senses with every bite. Sweet, juicy strawberries mingle with the tropical allure of ripe kiwi and luscious papaya, while plump blueberries offer a burst of freshness. A scattering of coconut flakes adds a hint of exotic crunch, and jewel-like pomegranate arils provide a playful burst of tartness. Each spoonful is a symphony of flavors and textures, a refreshing and wholesome indulgence that transports you to sun-kissed shores with every bite.",
     "category": "desserts",
     "price": 11.50,
-    "imageUrl": "http://localhost:3008/images/food/desserts_1.jpg",
+    "imageUrl": "http://localhost:3008/images/food/desserts_3.jpg",
     "available": true
   },
   {
@@ -95,7 +95,7 @@
     "description": "Indulge in our Heavenly Dessert Pancake Stack, a tower of golden pancakes kissed with cinnamon and drenched in velvety caramel. Fresh strawberries provide a burst of fruity sweetness, while a side of sweet butter dipping sauce adds a luxurious touch. It's a symphony of flavors and textures, where each bite blends the comforting warmth of pancakes with the richness of caramel and the brightness of strawberries. This dessert is a delightfully indulgent treat that will leave you craving more.",
     "category": "desserts",
     "price": 12.25,
-    "imageUrl": "http://localhost:3008/images/food/desserts_1.jpg",
+    "imageUrl": "http://localhost:3008/images/food/desserts_4.jpg",
     "available": true
   },
   {
