@@ -13,7 +13,7 @@
     "name": "Southwest Burger",
     "description": "Inspired by the spices of Tex-Mex, this one will light you up! Juicy patty seasoned with chili, cumin, and coriander, topped with pepper jack cheese, chipotle mayo, and fresh pico de gallo.",
     "category": "entrees",
-    "price": 11.54,
+    "price": 10.70,
     "imageUrl": "http://localhost:3008/images/food/burger_2.jpg",
     "available": true
   },
@@ -22,7 +22,7 @@
     "name": "Philly Burger",
     "description": "Philly cheesesteak flavor on a juicy burger! Shaved ribeye joins melty provolone, grilled onions, and peppers for a cheeseburger that's anything but ordinary.",
     "category": "entrees",
-    "price": 11.54,
+    "price": 15.54,
     "imageUrl": "http://localhost:3008/images/food/burger_3.jpg",
     "available": true
   },
@@ -31,7 +31,7 @@
     "name": "Frisco Burger",
     "description": "Craving a classic with a twist? Our Frisco Burger features a juicy patty nestled between toasted sourdough bread. Tangy thousand island dressing and creamy Swiss cheese elevate this burger to new heights.",
     "category": "entrees",
-    "price": 11.54,
+    "price": 13.50,
     "imageUrl": "http://localhost:3008/images/food/burger_4.jpg",
     "available": true
   },
@@ -40,7 +40,7 @@
     "name": "Chicago Burger",
     "description": "Chicago classic alert! Our Chicago Burger piles a juicy griddled patty high with Vienna beef hot dog relish, dill pickles, sport peppers, tomato, and creamy poppy seed dressing – all on a classic poppy seed bun.",
     "category": "entrees",
-    "price": 11.54,
+    "price": 15.00,
     "imageUrl": "http://localhost:3008/images/food/burger_5.jpg",
     "available": true
   },
@@ -85,7 +85,7 @@
     "name": "Tropical Fruit Bowl Delight",
     "description": "Escape to a tropical paradise with our exquisite Tropical Fruit Bowl. This vibrant dessert is a celebration of nature's bounty, featuring an array of fresh, colorful fruits that awaken your senses with every bite. Sweet, juicy strawberries mingle with the tropical allure of ripe kiwi and luscious papaya, while plump blueberries offer a burst of freshness. A scattering of coconut flakes adds a hint of exotic crunch, and jewel-like pomegranate arils provide a playful burst of tartness. Each spoonful is a symphony of flavors and textures, a refreshing and wholesome indulgence that transports you to sun-kissed shores with every bite.",
     "category": "desserts",
-    "price": 11.50,
+    "price": 8.50,
     "imageUrl": "http://localhost:3008/images/food/desserts_3.jpg",
     "available": true
   },
@@ -112,7 +112,7 @@
     "name": "Vegetarian Dumpling Soup",
     "description": "Indulge in the comforting embrace of our reconstructed 'pho'; Vegetarian Dumpling Soup. This delightful dish combines a fragrant, hearty vegetable broth with plump, handmade dumplings that burst with flavor. The dumplings are filled with a medley of finely chopped vegetables, offering a satisfying, savory bite with each spoonful. Tender, simmered vegetables float gracefully in the aromatic broth, creating a nourishing and soul-warming experience. Topped with a sprinkle of fresh herbs, this soup is a celebration of wholesome goodness, a perfect harmony of taste and texture for vegetarians and soup lovers alike.",
     "category": "pho",
-    "price": 11.69,
+    "price": 12.24,
     "imageUrl": "http://localhost:3008/images/food/pho_2.jpg",
     "available": true
   },
@@ -121,7 +121,7 @@
     "name": "Coconut-Curry Lobster Dumpling Soup",
     "description": "Savor the exotic flavors of our Coconut-Curry Lobster Dumpling Soup, a culinary masterpiece that takes your taste buds on a journey to paradise. A rich, velvety coconut-curry broth forms the luxurious base, infused with the fragrant spices of the East. Nestled within this aromatic elixir are succulent lobster dumplings, each bite revealing tender, perfectly cooked lobster meat wrapped in delicate dumpling skin. Alongside, you'll find baby potatoes, soft and creamy, providing a comforting contrast to the bold flavors of the soup. This dish is a harmonious blend of indulgence and sophistication, a true celebration of the sea and global culinary inspiration in every luscious spoonful.",
     "category": "pho",
-    "price": 11.69,
+    "price": 10.00,
     "imageUrl": "http://localhost:3008/images/food/pho_3.jpg",
     "available": true
   }
