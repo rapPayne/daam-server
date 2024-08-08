@@ -2,8 +2,8 @@
   {
     "id": 1001,
     "userId": 3,
-    "orderTime": "2023-01-01T11:42:25.973Z",
-    "pickupTime": "2023-01-01T11:51:47.032Z",
+    "orderTime": "2024-08-01T11:42:25.973Z",
+    "pickupTime": "2024-08-01T11:51:47.032Z",
     "area": "Theater 1",
     "location": "Table 37",
     "tax": 5.33,
@@ -24,7 +24,7 @@
       {
         "id": 2,
         "itemId": 2,
-        "price": 11.54,
+        "price": 10.74,
         "notes": "Ci mawone icafo nujuluk sivpa muksuco menur agabucen tom marbofzu cune nure fizo.",
         "firstName": "Carlos"
       },
@@ -100,7 +100,7 @@
       {
         "id": 1,
         "itemId": 11,
-        "price": 10.85,
+        "price": 10.25,
         "notes": "Wic ojfag foghaval mossoh ga ve osnuz fevu jek vuw ez pu reopele hemcal gi.",
         "firstName": "Edna"
       },
@@ -156,7 +156,7 @@
       {
         "id": 4,
         "itemId": 10,
-        "price": 9.39,
+        "price": 10.39,
         "firstName": "Maud"
       },
       {
@@ -201,7 +201,7 @@
       {
         "id": 3,
         "itemId": 9,
-        "price": 4.51,
+        "price": 4.55,
         "firstName": "Floyd"
       },
       {
@@ -213,7 +213,7 @@
       {
         "id": 5,
         "itemId": 9,
-        "price": 4.51,
+        "price": 5.51,
         "notes": "Hakbate kimursi jazkin anes gudkili guh azo cebire jazeki covtu mob fopaz ozki iwu so.",
         "firstName": "Eleanor"
       },
