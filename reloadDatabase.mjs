@@ -142,7 +142,7 @@ function makeMenuItem(id) {
     description: chance.paragraph({ sentences: Math.floor(Math.random() * 3) }),
     category: categories[Math.floor(Math.random() * categories.length)],
     price: +(Math.random() * 12 + 3).toFixed(2),
-    imageUrl: `${imageServer}/images/food/${foodImageFiles[Math.floor(Math.random() * foodImageFiles.length)]}`,
+    imageURL: `${imageServer}/images/food/${foodImageFiles[Math.floor(Math.random() * foodImageFiles.length)]}`,
     available: true,
   }
   return menuItem;
@@ -166,7 +166,7 @@ function makeRandomUser(id = 0) {
     last,
     phone: chance.phone(),
     email: `${first.toLowerCase()}.${last.toLowerCase()}@example.com`,
-    imageUrl: `https://minimaltoolkit.com/images/randomdata/${gender}/${randomImageNumber}.jpg`,
+    imageURL: `https://minimaltoolkit.com/images/randomdata/${gender}/${randomImageNumber}.jpg`,
     creditCard: card,
     adminUser: false,
   }
