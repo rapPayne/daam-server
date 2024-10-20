@@ -156,7 +156,7 @@ function makeRandomUser(id = 0) {
   const ccType = chance.cc_type();
   const expiryMonth = Math.floor(Math.random() * 12) + 1;
   const expiryYear = new Date().getFullYear() + Math.floor(Math.random() * 5) + 1;
-  const card = { PAN: chance.cc({ type: ccType }), expiryMonth, expiryYear };
+  const card = { pan: chance.cc({ type: ccType }), expiryMonth, expiryYear };
   const person = {
     id,
     username: `${first.charAt(0).toLowerCase()

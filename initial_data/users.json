@@ -9,7 +9,7 @@
     "email": "admin@daam.com",
     "imageURL": "https://minimaltoolkit.com/images/randomdata/female/70.jpg",
     "creditCard": {
-      "PAN": "",
+      "pan": "",
       "expiryMonth": 6,
       "expiryYear": 2025
     },
@@ -26,7 +26,7 @@
     "email": "cmac@daam.com",
     "imageURL": "https://minimaltoolkit.com/images/randomdata/female/71.jpg",
     "creditCard": {
-      "PAN": "4332-1234-1234-1234",
+      "pan": "4332-1234-1234-1234",
       "expiryMonth": 6,
       "expiryYear": 2025
     },
@@ -43,7 +43,7 @@
     "email": "testUser@daam.com",
     "imageURL": "https://minimaltoolkit.com/images/randomdata/female/7.jpg",
     "creditCard": {
-      "PAN": "4332-1234-1234-1234",
+      "pan": "4332-1234-1234-1234",
       "expiryMonth": 6,
       "expiryYear": 2025
     },
