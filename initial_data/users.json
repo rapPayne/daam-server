@@ -7,7 +7,7 @@
     "last": "User",
     "phone": "(555) 943-2230",
     "email": "admin@daam.com",
-    "imageURL": "https://minimaltoolkit.com/images/randomdata/female/70.jpg",
+    "imageUrl": "https://minimaltoolkit.com/images/randomdata/female/70.jpg",
     "creditCard": {
       "pan": "",
       "expiryMonth": 6,
@@ -24,7 +24,7 @@
     "last": "McIntyre",
     "phone": "(555) 442-2093",
     "email": "cmac@daam.com",
-    "imageURL": "https://minimaltoolkit.com/images/randomdata/female/71.jpg",
+    "imageUrl": "https://minimaltoolkit.com/images/randomdata/female/71.jpg",
     "creditCard": {
       "pan": "4332-1234-1234-1234",
       "expiryMonth": 6,
@@ -41,7 +41,7 @@
     "last": "User",
     "phone": "(555) 853-1039",
     "email": "testUser@daam.com",
-    "imageURL": "https://minimaltoolkit.com/images/randomdata/female/7.jpg",
+    "imageUrl": "https://minimaltoolkit.com/images/randomdata/female/7.jpg",
     "creditCard": {
       "pan": "4332-1234-1234-1234",
       "expiryMonth": 6,
@@ -58,7 +58,7 @@
     "last": "Server",
     "phone": "(555) 443-4567",
     "email": "server1@daam.com",
-    "imageURL": "https://minimaltoolkit.com/images/randomdata/female/9.jpg",
+    "imageUrl": "https://minimaltoolkit.com/images/randomdata/female/9.jpg",
     "adminUser": false,
     "isServer": true
   },
@@ -70,7 +70,7 @@
     "last": "Server",
     "phone": "(555) 123-4954",
     "email": "server2@daam.com",
-    "imageURL": "https://minimaltoolkit.com/images/randomdata/male/9.jpg",
+    "imageUrl": "https://minimaltoolkit.com/images/randomdata/male/9.jpg",
     "adminUser": false,
     "isServer": true
   }

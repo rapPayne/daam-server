@@ -53,7 +53,7 @@ db.orders = [];
 db.orders.push(...initialOrders);
 for (let order of db.orders) {
   if (order.status !== "completed") {
-    order.orderTime = ((new Date()) - Math.floor(Math.random() * 30 * 60 * 1000)); // Random time in the last 30 minutes
+    order.orderTime = new Date((new Date()) - Math.floor(Math.random() * 30 * 60 * 1000)); // Random time in the last 30 minutes
   }
 }
 for (let i = startingOrderId; i < startingOrderId + howManyOldOrders; i++) {
@@ -142,7 +142,7 @@ function makeMenuItem(id) {
     description: chance.paragraph({ sentences: Math.floor(Math.random() * 3) }),
     category: categories[Math.floor(Math.random() * categories.length)],
     price: +(Math.random() * 12 + 3).toFixed(2),
-    imageURL: `${imageServer}/images/food/${foodImageFiles[Math.floor(Math.random() * foodImageFiles.length)]}`,
+    imageUrl: `${imageServer}/images/food/${foodImageFiles[Math.floor(Math.random() * foodImageFiles.length)]}`,
     available: true,
   }
   return menuItem;
@@ -166,7 +166,7 @@ function makeRandomUser(id = 0) {
     last,
     phone: chance.phone(),
     email: `${first.toLowerCase()}.${last.toLowerCase()}@example.com`,
-    imageURL: `https://minimaltoolkit.com/images/randomdata/${gender}/${randomImageNumber}.jpg`,
+    imageUrl: `https://minimaltoolkit.com/images/randomdata/${gender}/${randomImageNumber}.jpg`,
     creditCard: card,
     adminUser: false,
   }

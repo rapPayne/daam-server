@@ -58,8 +58,6 @@
   {
     "id": 1002,
     "userId": 3,
-    "orderTime": "2023-03-20T07:18:48.694Z",
-    "pickupTime": "2023-03-20T07:21:09.746Z",
     "area": "Theater 1",
     "location": "Table 32",
     "tax": 1.01,
@@ -84,8 +82,6 @@
   {
     "id": 1003,
     "userId": 3,
-    "orderTime": "2022-11-23T18:13:09.251Z",
-    "pickupTime": "2022-11-23T18:19:18.821Z",
     "area": "Theater 1",
     "location": "Table 33",
     "tax": 2.17,
@@ -122,8 +118,6 @@
   {
     "id": 1004,
     "userId": 3,
-    "orderTime": "2023-01-04T13:02:22.503Z",
-    "pickupTime": "2023-01-04T13:12:00.595Z",
     "area": "Theater 1",
     "location": "Table 16",
     "tax": 4.94,
@@ -172,8 +166,6 @@
   {
     "id": 1005,
     "userId": 3,
-    "orderTime": "2023-03-02T13:45:41.371Z",
-    "pickupTime": "2023-03-02T13:51:09.664Z",
     "area": "Theater 1",
     "location": "Table 34",
     "tax": 3.52,

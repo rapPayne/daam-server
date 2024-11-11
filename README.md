@@ -33,7 +33,7 @@ See [database.json](database.json) for the final structure. Here's a general lay
 | description | string |                                  |
 | category    | string | free-form                        |
 | price       | number |                                  |
-| imageURL    | string |                                  |
+| imageUrl    | string |                                  |
 | available   | bool   | false=doesn't appear on the menu |
 
 TODO: Category should eventually be a collection/enum
@@ -47,7 +47,7 @@ TODO: Category should eventually be a collection/enum
 | first      | string |                                  |
 | last       | string |                                  |
 | phone      | string |                                  |
-| imageURL   | string | optional                         |
+| imageUrl   | string | optional                         |
 | creditCard | object | {PAN, expiryMonth, expiryYear}   |
 | adminUser  | bool   | true=Has administrator privilege |
 
