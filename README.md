@@ -9,7 +9,7 @@ npm run load-db
 npm start
 ```
 ## To get data from it
-Make GET requests using Postman or [Hoppscotch](http://hoppscotch.io). But you'll need to authenticate to get to certain orders and other things.
+Make GET requests using Postman or [Hoppscotch](http://hoppscotch.io) or [Api Dog](https://apidog.com). But you'll need to authenticate to get to certain orders and other things.
 
 ## To authenticate
 Make a POST request to /login with {"username": ____, "password": "pass" }. (All passwords are pass until you decide to change them.)
@@ -22,6 +22,11 @@ Testing routes is tough when you have to log in before they work. So we've writt
 
 ### Enabling security
 Run `node apiServer` without the --skipAuth flag.
+
+## What you can fetch
+Anything deployed to the [public](./public/) folder can be served as an asset. Notice that there's already some images in there. Put your html files, css files, and client-side JavaScript files in public. When requested with a GET request, they'll be served. Put an index.html file in there to get started.
+
+You can also make API requests to get data served.
 
 ## Database collections
 See [database.json](database.json) for the final structure. Here's a general layout.
