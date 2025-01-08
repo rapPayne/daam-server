@@ -3,7 +3,7 @@ import fs from 'fs';
 
 // Config values
 const dbFileName = "./database.json";
-const imageServer = `http://localhost:3008`;
+const imageServer = ``;
 const startingUserId = 1077;
 const howManyUsers = 100;
 const howManyMenuItems = 20;
