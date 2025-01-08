@@ -1,0 +1,16 @@
+meta {
+  name: DELETE one menuItems
+  type: http
+  seq: 5
+}
+
+delete {
+  url: http://localhost:3008/api/menuItems/15
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.id: eq 5
+}
