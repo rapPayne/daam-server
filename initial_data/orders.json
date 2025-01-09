@@ -11,8 +11,7 @@
     "creditCard": {
       "pan": "4026664388908977",
       "expiryMonth": 9,
-      "expiryYear": 2028,
-      "cvv": 770
+      "expiryYear": 2028
     },
     "items": [
       {
@@ -65,8 +64,7 @@
     "creditCard": {
       "pan": "5182958648591491",
       "expiryMonth": 5,
-      "expiryYear": 2024,
-      "cvv": 661
+      "expiryYear": 2024
     },
     "items": [
       {
@@ -89,8 +87,7 @@
     "creditCard": {
       "pan": "201447805801057",
       "expiryMonth": 9,
-      "expiryYear": 2026,
-      "cvv": 388
+      "expiryYear": 2026
     },
     "items": [
       {
@@ -125,8 +122,7 @@
     "creditCard": {
       "pan": "5137069438784126",
       "expiryMonth": 8,
-      "expiryYear": 2027,
-      "cvv": 891
+      "expiryYear": 2027
     },
     "items": [
       {
@@ -173,8 +169,7 @@
     "creditCard": {
       "pan": "30004888442197",
       "expiryMonth": 2,
-      "expiryYear": 2026,
-      "cvv": 712
+      "expiryYear": 2026
     },
     "items": [
       {

@@ -120,7 +120,7 @@ function makeOrder(id, type) {
     location: `Table ${Math.floor(Math.random() * 50) + 1}`,  // Random table number between 1 and 50
     tax: +(subTotal * 0.0825).toFixed(2), // 8.25% tax
     tip: +(subTotal * 0.20).toFixed(2),  // 20% tip
-    creditCard: { ...user.creditCard, cvv: Math.floor(Math.random() * 900) + 100 },  // Random number between 100&999
+    creditCard: { ...user.creditCard },  // Random number between 100&999
     items,
     status: "completed",
   }

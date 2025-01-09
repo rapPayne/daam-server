@@ -2,7 +2,6 @@
 // Reserving tickets is in reservations.router.mjs
 import { readDatabase, saveDatabase } from '../repository.mjs';
 
-
 export const orderRouter = (app) => {
   app.get("/orders", getOrdersRoute);
   app.get("/orders/current", getCurrentOrdersRoute);
@@ -20,6 +19,11 @@ const placeOrderRoute = (req, res) => {
   const db = readDatabase();
   //Process into a real order
   const orderId = getNextOrderId(db.orders)
+  const creditCardWithoutCvv = {
+    pan: req.body.pan,
+    expiryMonth: req.body.expiryMonth,
+    expiryYear: req.body.expiryYear,
+  }
   const newOrder = {
     id: orderId,
     userId: user?.id,
@@ -28,7 +32,7 @@ const placeOrderRoute = (req, res) => {
     area: req.body.area,
     tax: calculateTax(req.body),
     tip: req.body.tip,
-    creditCard: req.body.creditCard,
+    creditCard: creditCardWithoutCvv,
     status: "new",
     items: (req.body.items ?? req.body.cart ?? []).map(item => ({
       id: item.id,
