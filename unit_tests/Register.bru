@@ -1,0 +1,46 @@
+meta {
+  name: Register
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:3008/api/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "jenny",
+    "password": "pass",
+    "email": "me@email.com",
+    "phone": "867-5309",
+    "first": "Jenny",
+    "last": "Tutone",
+    "pan": "4444111122223333",
+    "expiryMonth": 12,
+    "expiryYear": 2035
+  }
+}
+
+script:pre-request {
+  const {faker} = require('@faker-js/faker')
+  const first = faker.person.firstName();
+  const last = faker.person.lastName();
+  const username = "test_"+first+"_"+last;
+  const email = faker.internet.email();
+  const phone = faker.phone.number();
+  
+  req.setBody({
+    "username": username,
+    "password": "pass",
+    "email": email,
+    "phone": phone,
+    "first": first,
+    "last": last,
+    "pan": "4444111122223333",
+    "expiryMonth": 12,
+    "expiryYear": 2035
+  })
+}

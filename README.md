@@ -47,10 +47,11 @@ TODO: Category should eventually be a collection/enum
 | column     | type   | notes                            |
 | ---------- | ------ | -------------------------------- |
 | id         | number | Primary key                      |
-| email      | string | Also the username                |
+| username   | string |                                  |
 | password   | string | Should be hashed but isn't       |
 | first      | string |                                  |
 | last       | string |                                  |
+| email      | string |                                  |
 | phone      | string |                                  |
 | imageUrl   | string | optional                         |
 | creditCard | object | {PAN, expiryMonth, expiryYear}   |
@@ -73,6 +74,9 @@ TODO: Category should eventually be a collection/enum
 ## Endpoints
 
 ### login (POST)
+### register (POST)
+### account/:id (PATCH)
+Update a user's account information
 ### orders (GET, PATCH)
 - authorization: only if user.isServer or user.adminUser or user.id === order.userId
 ### menuItems (GET)

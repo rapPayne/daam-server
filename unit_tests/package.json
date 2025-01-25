@@ -1,0 +1,15 @@
+{
+  "name": "unit_tests",
+  "version": "1.0.0",
+  "description": "This project uses [Bruno](https://usebruno.com) to run unit tests. Bruno is located at `/Applications/Bruno.app`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^9.4.0"
+  }
+}
