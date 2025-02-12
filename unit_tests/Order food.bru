@@ -1,0 +1,28 @@
+meta {
+  name: Order food
+  type: http
+  seq: 9
+}
+
+post {
+  url: http://localhost:3008/api/placeOrder
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "pan": "4111-1111-1111-1111",
+    "expiryMonth": "10",
+    "expiryYear": "2040",
+    "location": "Theater 1",
+    "area": "Table 1",
+    "tip": 10.00,
+    "items": [
+      {"id": 1, "itemId": 11, "price": 5.00, "notes": "heavy PB", "firstName": "Rap"},
+      {"id": 2, "itemId": 13, "price": 2.00},
+      {"id": 3, "itemId": 12, "price": 12.00, "firstName": "Rap"},
+      {"id": 4, "itemId": 10, "price": 8.00, "notes": "No ice"}
+    ]
+  }
+}

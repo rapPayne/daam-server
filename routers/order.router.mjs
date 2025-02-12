@@ -19,6 +19,8 @@ const placeOrderRoute = (req, res) => {
   const db = readDatabase();
   //Process into a real order
   const orderId = getNextOrderId(db.orders)
+  //TODO: expiry must be in the future
+  //TODO: pretend to validate the credit card (use Luhn's?)
   const creditCardWithoutCvv = {
     pan: req.body.pan,
     expiryMonth: req.body.expiryMonth,
@@ -68,7 +70,7 @@ const getOrderRoute = (req, res) => {
   }
   const menuItems = readDatabase().menuItems;
   order.items = order.items?.map(item => ({
-    ...item, ...menuItems.find(mi => mi.id === item.id)
+    ...item, ...menuItems.find(mi => mi.id === item.itemId), id: item.id  // id added at the end bc the menuitem clobbers it
   }));
   if (req.skipAuth || user?.adminUser || user?.isServer || order?.userId === +user?.id)
     res.send(order);
