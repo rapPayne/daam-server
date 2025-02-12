@@ -148,10 +148,10 @@ function makeMenuItem(id) {
   return menuItem;
 }
 function makeRandomUser(id = 0) {
-  const gender = chance.gender().toLowerCase();
+  const gender = Math.random() < 0.5 ? "men" : "women";
   const first = chance.first({ gender });
   const last = chance.last();
-  const biggestImageNumber = 110;
+  const biggestImageNumber = 100;
   const randomImageNumber = Math.floor(Math.random() * biggestImageNumber);
   const ccType = chance.cc_type();
   const expiryMonth = Math.floor(Math.random() * 12) + 1;
@@ -159,14 +159,13 @@ function makeRandomUser(id = 0) {
   const card = { pan: chance.cc({ type: ccType }), expiryMonth, expiryYear };
   const person = {
     id,
-    username: `${first.charAt(0).toLowerCase()
-      }.${last.toLowerCase()}`,
+    username: `${first.charAt(0).toLowerCase()}.${last.toLowerCase()}`,
     password: "pass",
     first,
     last,
     phone: chance.phone(),
     email: `${first.toLowerCase()}.${last.toLowerCase()}@example.com`,
-    imageUrl: `https://minimaltoolkit.com/images/randomdata/${gender}/${randomImageNumber}.jpg`,
+    imageUrl: `https://randomuser.me/api/portraits/${gender}/${randomImageNumber}.jpg`,
     creditCard: card,
     adminUser: false,
   }

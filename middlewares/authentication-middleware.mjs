@@ -50,7 +50,7 @@ export function authRouter(app) {
   // POST /register 
   app.post("/register", (req, res) => {
     const newUser = req.body;
-    const { username, password, email, first, last, phone, credit_card } = newUser;
+    const { username, password, email, phone, } = newUser;
     console.log('hit register', username, password)
 
     if (!username || !password) {
@@ -72,17 +72,23 @@ export function authRouter(app) {
       return;
     }
 
+    user = users.find(u => u.phone === phone);
+    if (user) {
+      res.status(400).send(`${phone} already exists. Login or register with a different phone.`);
+      return;
+    }
+
     user = { id: getNextUserId(users), ...newUser, adminUser: false, isServer: false };
 
     db.users.push(user);
     saveDatabase(db);
 
-    const jwtToken = makeJwtToken({ ...user, password: "***" });
+    const jwtToken = makeJwtToken({ ...user });
     res.header('Authorization', `Bearer ${jwtToken}`);
     res.status(200).send({ ...user, password: "***" });
   });
 
-  // POST /account
+  // PATCH /account/:id
   /**
    * For updating an existing account */
   app.patch("/account/:id", (req, res) => {
