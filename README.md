@@ -99,20 +99,3 @@ Update a user's account information
 | completed     | Paid for. The order is closed.                |
 
 Built on [json-server](https://github.com/typicode/json-server)
-
-## Simple diagram
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
-
-```mermaid
-graph TD
-    A[Start] --> B{Is it working?}
-    B -->|Yes| C[Great!]
-    B -->|No| D[Debug]
-    D --> B
-```
