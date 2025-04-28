@@ -11,6 +11,13 @@ npm start
 ## To get data from it
 Make GET requests using Postman or [Hoppscotch](http://hoppscotch.io) or [Api Dog](https://apidog.com). But you'll need to authenticate to get to certain orders and other things.
 
+## Delaying responses
+To simulate a slow network, you can add a delay to the server. This is useful for testing how your app handles slow responses. To do this, run the server with the --delay flag:
+```bash
+node apiServer --delay 2000
+```
+This will add a 2 second delay to all responses. You can change the number to whatever you want.
+
 ## To authenticate
 Make a POST request to /login with {"username": ____, "password": "pass" }. (All passwords are pass until you decide to change them.)
 - Servers are "server1", "server2", and "server3"
