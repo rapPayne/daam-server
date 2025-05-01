@@ -1,4 +1,4 @@
-import Chance from 'chance';
+import { faker } from '@faker-js/faker';
 import fs from 'fs';
 
 // Config values
@@ -21,7 +21,6 @@ String.prototype.toTitleCase = function () { return this.charAt(0).toLocaleUpper
 const loadFromJSON = (filename) => JSON.parse(fs.readFileSync(filename));
 
 // Setup
-const chance = Chance.Chance();
 const foodImageFiles = fs.readdirSync('./public/images/food');
 const initialMenuItems = loadFromJSON('./initial_data/menuItems.json');
 const initialUsers = loadFromJSON('./initial_data/users.json');
@@ -99,8 +98,8 @@ function makeOrder(id, type) {
       id: i,
       itemId: menuItem.id,
       price: menuItem.price,
-      notes: Math.random() > .67 ? chance.sentence() : undefined, // Only occasionally have a note
-      firstName: chance.first(),
+      notes: Math.random() > .67 ? `Extra ${faker.food.ingredient()}` : undefined, // Only occasionally have a note
+      firstName: faker.person.firstName(),
     };
     items.push(item);
   }
@@ -138,8 +137,8 @@ function makeNewOrder(id) {
 function makeMenuItem(id) {
   const menuItem = {
     id,
-    name: `${chance.word().toTitleCase()} ${chance.word().toTitleCase()}`,
-    description: chance.paragraph({ sentences: Math.floor(Math.random() * 3) }),
+    name: faker.food.dish(),
+    description: faker.food.description(),
     category: categories[Math.floor(Math.random() * categories.length)],
     price: +(Math.random() * 12 + 3).toFixed(2),
     imageUrl: `${imageServer}/images/food/${foodImageFiles[Math.floor(Math.random() * foodImageFiles.length)]}`,
@@ -148,24 +147,26 @@ function makeMenuItem(id) {
   return menuItem;
 }
 function makeRandomUser(id = 0) {
-  const gender = Math.random() < 0.5 ? "men" : "women";
-  const first = chance.first({ gender });
-  const last = chance.last();
+  const gender = Math.random() < 0.5 ? 'male' : 'female';
+  const imgGender = gender == 'male' ? 'men' : 'women';
+  const first = faker.person.firstName(gender);
+  const last = faker.person.lastName(gender);
+  const username = faker.internet.username({ firstName: first.toLowerCase(), lastName: last.toLowerCase() });
   const biggestImageNumber = 100;
   const randomImageNumber = Math.floor(Math.random() * biggestImageNumber);
-  const ccType = chance.cc_type();
+  const ccType = ["mastercard", "visa", "discover"][Math.floor(Math.random() * 3)];
   const expiryMonth = Math.floor(Math.random() * 12) + 1;
   const expiryYear = new Date().getFullYear() + Math.floor(Math.random() * 5) + 1;
-  const card = { pan: chance.cc({ type: ccType }), expiryMonth, expiryYear };
+  const card = { pan: faker.finance.creditCardNumber({ issuer: ccType }), expiryMonth, expiryYear };
   const person = {
     id,
-    username: `${first.charAt(0).toLowerCase()}.${last.toLowerCase()}`,
+    username,
     password: "pass",
     first,
     last,
-    phone: chance.phone(),
-    email: `${first.toLowerCase()}.${last.toLowerCase()}@example.com`,
-    imageUrl: `https://randomuser.me/api/portraits/${gender}/${randomImageNumber}.jpg`,
+    phone: faker.phone.number({ style: 'national' }),  // US phone number
+    email: faker.internet.email({ firstName: first.toLowerCase(), lastName: last.toLowerCase() }),
+    imageUrl: `https://randomuser.me/api/portraits/${imgGender}/${randomImageNumber}.jpg`,
     creditCard: card,
     adminUser: false,
   }
