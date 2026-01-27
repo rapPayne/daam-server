@@ -1,7 +1,9 @@
 import { faker } from '@faker-js/faker';
 import fs from 'fs';
+import bcrypt from 'bcrypt';
 
 // Config values
+const SALT_ROUNDS = 10;
 const dbFileName = "./database.json";
 const imageServer = ``;
 const startingUserId = 1077;
@@ -158,10 +160,11 @@ function makeRandomUser(id = 0) {
   const expiryMonth = Math.floor(Math.random() * 12) + 1;
   const expiryYear = new Date().getFullYear() + Math.floor(Math.random() * 5) + 1;
   const card = { pan: faker.finance.creditCardNumber({ issuer: ccType }), expiryMonth, expiryYear };
+  const hashedPassword = bcrypt.hashSync("pass", SALT_ROUNDS);
   const person = {
     id,
     username,
-    password: "pass",
+    password: hashedPassword,
     first,
     last,
     phone: faker.phone.number({ style: 'national' }),  // US phone number

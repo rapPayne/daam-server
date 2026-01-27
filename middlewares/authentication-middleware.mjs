@@ -1,7 +1,10 @@
 // need cookieParser middleware before we can do anything with cookies
 import { readDatabase, saveDatabase } from '../repository.mjs';
 import jwt from 'jsonwebtoken';
-const jwtSecret = "This is the daam-jwt-secret-key! Oooooooh!"
+import bcrypt from 'bcrypt';
+
+const jwtSecret = "This is the daam-jwt-secret-key! Oooooooh!";
+const SALT_ROUNDS = 10;
 
 /**
  * This middleware should be run on every request.
@@ -33,22 +36,35 @@ export function authRouter(app) {
   });
 
   // POST /login - if good username/password, write an auth token.
-  app.post("/login", (req, res) => {
+  app.post("/login", async (req, res) => {
     const { username, password } = req.body;
     const db = readDatabase();
     const users = db.users;
-    const user = users.find(u => u.username === username && u.password === password);
-    if (user) {
-      const jwtToken = makeJwtToken(user)
-      res.header('Authorization', `Bearer ${jwtToken}`);
-      res.status(200).send({ ...user, password: "****" });
-    } else {
+
+    // Find user by username only
+    const user = users.find(u => u.username === username);
+
+    if (!user) {
       res.status(401).send("Bad username or password");
+      return;
     }
+
+    // Compare plaintext password with hashed password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      res.status(401).send("Bad username or password");
+      return;
+    }
+
+    // Success
+    const jwtToken = makeJwtToken(user);
+    res.header('Authorization', `Bearer ${jwtToken}`);
+    res.status(200).send({ ...user, password: "****" });
   });
 
-  // POST /register 
-  app.post("/register", (req, res) => {
+  // POST /register
+  app.post("/register", async (req, res) => {
     const newUser = req.body;
     const { username, password, email, phone, } = newUser;
     console.log('hit register', username, password)
@@ -78,7 +94,10 @@ export function authRouter(app) {
       return;
     }
 
-    user = { id: getNextUserId(users), ...newUser, adminUser: false, isServer: false };
+    // Hash password before storing
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
+    user = { id: getNextUserId(users), ...newUser, password: hashedPassword, adminUser: false, isServer: false };
 
     db.users.push(user);
     saveDatabase(db);
@@ -91,7 +110,7 @@ export function authRouter(app) {
   // PATCH /account/:id
   /**
    * For updating an existing account */
-  app.patch("/account/:id", (req, res) => {
+  app.patch("/account/:id", async (req, res) => {
     let userId = +req.params.id;
     let user = req.user;  // Get the authenticated user (set in the auth middleware from JWT)
     console.log("Updating account info for user", userId);
@@ -114,10 +133,13 @@ export function authRouter(app) {
       return;
     }
 
+    // Hash password before storing
+    const hashedPassword = await bcrypt.hash(updatedUser.password, SALT_ROUNDS);
+
     let newUser = {
       ...oldUser,
       username: updatedUser.username, //TODO: Make sure username isn't already taken
-      password: updatedUser.password, //TODO: hash the password
+      password: hashedPassword,
       email: updatedUser.email, //TODO: Make sure email isn't already taken
       phone: updatedUser.phone, //TODO: Make sure phone isn't already taken
       first: updatedUser.first,

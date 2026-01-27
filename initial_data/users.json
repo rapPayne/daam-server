@@ -2,7 +2,7 @@
   {
     "id": 1,
     "username": "admin",
-    "password": "pass",
+    "password": "$2b$10$Kh12z2JT4gIy.xXwJeVD4.MG2x0ndv4tqweYDB8kehAI3TWhW7HGi",
     "first": "Administrative",
     "last": "User",
     "phone": "(555) 943-2230",
@@ -19,7 +19,7 @@
   {
     "id": 2,
     "username": "cmac",
-    "password": "pass",
+    "password": "$2b$10$Kh12z2JT4gIy.xXwJeVD4.MG2x0ndv4tqweYDB8kehAI3TWhW7HGi",
     "first": "Caitlin",
     "last": "McIntyre",
     "phone": "(555) 442-2093",
@@ -36,7 +36,7 @@
   {
     "id": 3,
     "username": "me",
-    "password": "pass",
+    "password": "$2b$10$Kh12z2JT4gIy.xXwJeVD4.MG2x0ndv4tqweYDB8kehAI3TWhW7HGi",
     "first": "Test",
     "last": "User",
     "phone": "(555) 853-1039",
@@ -53,7 +53,7 @@
   {
     "id": 4,
     "username": "server1",
-    "password": "pass",
+    "password": "$2b$10$Kh12z2JT4gIy.xXwJeVD4.MG2x0ndv4tqweYDB8kehAI3TWhW7HGi",
     "first": "Jo",
     "last": "Server",
     "phone": "(555) 443-4567",
@@ -65,7 +65,7 @@
   {
     "id": 5,
     "username": "server2",
-    "password": "pass",
+    "password": "$2b$10$Kh12z2JT4gIy.xXwJeVD4.MG2x0ndv4tqweYDB8kehAI3TWhW7HGi",
     "first": "Lee",
     "last": "Server",
     "phone": "(555) 123-4954",
