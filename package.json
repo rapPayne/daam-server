@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "load-db": "node reloadDatabase.mjs",
+    "load-pg": "node loadPostgres.mjs",
     "start": "node apiServer.mjs --skipAuth",
     "watch": "node --watch apiServer.mjs --skipAuth",
     "test": "node reloadDatabase.test.mjs"
@@ -21,7 +22,8 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "json-server": "^0.17.0",
-    "jsonwebtoken": "^9.0.1"
+    "jsonwebtoken": "^9.0.1",
+    "pg": "^8.20.0"
   },
   "engines": {
     "node": ">=18.11"
