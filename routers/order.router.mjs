@@ -2,6 +2,21 @@
 // Reserving tickets is in reservations.router.mjs
 import { readDatabase, saveDatabase } from '../repository.mjs';
 
+export const maskPan = (pan) => {
+  if (!pan) return '';
+  const digits = String(pan).replace(/\D/g, '');
+  if (digits.length <= 4) return digits;
+  return `**** **** **** ${digits.slice(-4)}`;
+};
+
+const sanitizeOrder = (order) => ({
+  ...order,
+  creditCard: order.creditCard ? {
+    ...order.creditCard,
+    pan: maskPan(order.creditCard.pan),
+  } : order.creditCard,
+});
+
 export const orderRouter = (app) => {
   app.get("/orders", getOrdersRoute);
   app.get("/orders/current", getCurrentOrdersRoute);
@@ -73,7 +88,7 @@ const getOrderRoute = (req, res) => {
     ...item, ...menuItems.find(mi => mi.id === item.itemId), id: item.id  // id added at the end bc the menuitem clobbers it
   }));
   if (req.skipAuth || user?.adminUser || user?.isServer || order?.userId === +user?.id)
-    res.send(order);
+    res.send(sanitizeOrder(order));
   else {
     res.status(403).send("That's not your order. You can't see it.")
   }
@@ -91,11 +106,10 @@ const getCurrentOrdersRoute = (req, res) => {
     return;
   }
   const orders = readDatabase().orders.filter(o => o.status !== "completed");
-  if (req.skipAuth || user?.adminUser || user?.isServer)
-    res.send(orders);
-  else {
-    res.send(orders.filter(o => o.userId === +user?.id))
-  }
+  const visibleOrders = (req.skipAuth || user?.adminUser || user?.isServer)
+    ? orders
+    : orders.filter(o => o.userId === +user?.id);
+  res.send(visibleOrders.map(sanitizeOrder));
 }
 
 /**
@@ -109,11 +123,10 @@ const getOrdersRoute = (req, res) => {
     return;
   }
   const orders = readDatabase().orders;
-  if (req.skipAuth || user?.adminUser || user?.isServer)
-    res.send(orders);
-  else {
-    res.send(orders.filter(o => o.userId === +user?.id))
-  }
+  const visibleOrders = (req.skipAuth || user?.adminUser || user?.isServer)
+    ? orders
+    : orders.filter(o => o.userId === +user?.id);
+  res.send(visibleOrders.map(sanitizeOrder));
 }
 
 

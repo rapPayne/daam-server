@@ -2,9 +2,23 @@
 import { readDatabase, saveDatabase } from '../repository.mjs';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { maskPan } from '../routers/order.router.mjs';
 
 const jwtSecret = "This is the daam-jwt-secret-key! Oooooooh!";
 const SALT_ROUNDS = 10;
+
+export const sanitizeUserForResponse = (user, passwordMask = '****') => {
+  const sanitizedUser = { ...user, password: passwordMask };
+
+  delete sanitizedUser.credit_card;
+
+  const card = user.creditCard ?? user.credit_card;
+  if (card) {
+    sanitizedUser.creditCard = { ...card, pan: maskPan(card.pan) };
+  }
+
+  return sanitizedUser;
+};
 
 /**
  * This middleware should be run on every request.
@@ -60,7 +74,8 @@ export function authRouter(app) {
     // Success
     const jwtToken = makeJwtToken(user);
     res.header('Authorization', `Bearer ${jwtToken}`);
-    res.status(200).send({ ...user, password: "****" });
+    const sanitizedUser = sanitizeUserForResponse(user, '****');
+    res.status(200).send(sanitizedUser);
   });
 
   // POST /register
@@ -104,7 +119,8 @@ export function authRouter(app) {
 
     const jwtToken = makeJwtToken({ ...user });
     res.header('Authorization', `Bearer ${jwtToken}`);
-    res.status(200).send({ ...user, password: "***" });
+    const sanitizedUser = sanitizeUserForResponse(user, '***');
+    res.status(200).send(sanitizedUser);
   });
 
   // PATCH /account/:id
@@ -145,10 +161,10 @@ export function authRouter(app) {
       first: updatedUser.first,
       last: updatedUser.last,
       imageUrl: updatedUser.imageUrl,
-      credit_card: {
-        pan: updatedUser.pan,
-        expiryMonth: updatedUser.expiryMonth,
-        expiryYear: updatedUser.expiryYear,
+      creditCard: {
+        pan: updatedUser.pan ?? updatedUser.creditCard?.pan ?? updatedUser.credit_card?.pan,
+        expiryMonth: updatedUser.expiryMonth ?? updatedUser.creditCard?.expiryMonth ?? updatedUser.credit_card?.expiryMonth,
+        expiryYear: updatedUser.expiryYear ?? updatedUser.creditCard?.expiryYear ?? updatedUser.credit_card?.expiryYear,
       },
       // NOTE: Do not change adminUser or isServer here or any user can self-promote.
     }
@@ -158,7 +174,8 @@ export function authRouter(app) {
 
     // const jwtToken = makeJwtToken({ ...user, password: "***" });
     // res.header('Authorization', `Bearer ${jwtToken}`);
-    res.status(200).send({ ...newUser, password: "***" });
+    const sanitizedUser = sanitizeUserForResponse(newUser, '***');
+    res.status(200).send(sanitizedUser);
   });
 }
 
